@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath(group: "org.springframework.boot", name: "spring-boot-gradle-plugin", version: "1.1.7.RELEASE")
+    }
+}
+
+// this plugin runs to use the latest version of all spring libraries and provides additional
+// functionality to the gradle “run” task that is added by java/groovy/scala/etc
+apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+}
+
+dependencies {
+    compile(
+            [group: 'org.springframework.boot', name: 'spring-boot-starter'],
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-web'],
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'],
+
+            // need to add for @ComponentScan
+            [group: 'org.springframework', name: 'spring-context' ]
+    )
+}
